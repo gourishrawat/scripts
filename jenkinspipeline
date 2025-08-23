@@ -21,6 +21,34 @@ agent any
     }
 }
 
+CI with trigger in code 
+------------------------
+pipeline {
+agent any
+
+    triggers{
+        pollSCM('* * * * *')
+    }
+    stages {
+        stage('Git clone by sudarshan') {
+            steps {
+            git branch: 'main', url: 'https://github.com/DevSecOpsG/helloworldsimplejavaprogram'
+            }
+        }
+        stage('Build'){
+            steps{
+            sh 'javac helloworld.java'
+            }
+        }
+        stage('Run'){
+            steps{
+            sh 'java Simple'
+            }
+        }
+    }
+}
+
+
 
 
 for window's
